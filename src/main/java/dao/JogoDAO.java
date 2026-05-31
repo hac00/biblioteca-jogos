@@ -98,6 +98,26 @@ public class JogoDAO {
         return lista;
     }
 
+    public Jogo buscarId(int id){
+        String sql = "SELECT * FROM jogos WHERE id = ?";
+
+        try(Connection conn = ConexaoDB.getConexao();
+            PreparedStatement stmt = conn.prepareStatement(sql)){
+
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()){
+                return map(rs);
+            }
+
+        }catch(SQLException e){
+            throw new RuntimeException("Erro ao buscar o jogo por id");
+        }
+
+        return null;
+    }
+
     public Jogo buscarNome(String nome){
         String sql = "SELECT * FROM jogos WHERE nome ILIKE ?";
 
@@ -112,7 +132,7 @@ public class JogoDAO {
             }
 
         }catch(SQLException e){
-            throw new RuntimeException("Erro ao listar o jogo por nome");
+            throw new RuntimeException("Erro ao buscar o jogo por nome");
         }
 
         return null;

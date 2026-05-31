@@ -25,6 +25,10 @@ public class JogoService {
         return dao.listar();
     }
 
+    public Jogo buscarId(int id){
+        return dao.buscarId(id);
+    }
+
     public Jogo buscarNome(String nome){
         return dao.buscarNome(nome);
     }
