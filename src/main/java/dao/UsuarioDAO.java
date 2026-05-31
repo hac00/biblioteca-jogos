@@ -11,7 +11,7 @@ public class UsuarioDAO {
 
     public Usuario autenticar(String email, String senha){
 
-        String sql = "SELECT * FROM usuario WHERE email = ? AND senha = ?";
+        String sql = "SELECT * FROM usuarios WHERE email = ? AND senha = ?";
 
         try (Connection conn = ConexaoDB.getConexao();
              PreparedStatement stmt = conn.prepareStatement(sql)){
@@ -38,7 +38,7 @@ public class UsuarioDAO {
 
     public boolean inserir(Usuario u){
 
-        String sql = "INSERT INTO usuario (nome, email, senha) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)";
 
         try(Connection conn = ConexaoDB.getConexao();
             PreparedStatement stmt = conn.prepareStatement(sql)){

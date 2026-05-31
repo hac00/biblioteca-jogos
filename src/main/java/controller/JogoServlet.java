@@ -29,7 +29,7 @@ public class JogoServlet extends HttpServlet {
         if ("editar".equals(acao)) {
             int id = Integer.parseInt(req.getParameter("id"));
             Jogo j = service.buscarId(id);
-            req.setAttribute("produto", j);
+            req.setAttribute("jogo", j);
         }
         if ("excluir".equals(acao)) {
             int id = Integer.parseInt(req.getParameter("id"));
