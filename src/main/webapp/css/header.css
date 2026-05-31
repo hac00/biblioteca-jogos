@@ -1,0 +1,46 @@
+.header {
+    background: linear-gradient(90deg, #4f46e5, #9333ea);
+    padding: 10px 25px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 120px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.logo {
+    flex-shrink: 0;
+}
+/*
+.logo img {
+    width: 550px;
+    height: 350px;
+}
+*/
+.header h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.header div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+}
+
+.header a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+.header a:hover {
+    background: rgba(255,255,255,0.2);
+}

@@ -3,7 +3,7 @@
 <%@ page isELIgnored="false" %>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/produtos.css?v=1">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jogos.css?v=1">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
     <title>Minha Biblioteca de Jogos</title>
 </head>
@@ -47,7 +47,7 @@
                 <label>URL da Capa (Link de Imagem)</label>
                 <input type="text" name="capa" value="${jogo.capa}" placeholder="http://...">
 
-                <div style="margin: 15px 0;">
+                <div class="checkbox-container">
                     <input type="checkbox" id="jogando" name="jogando" ${jogo.jogando ? 'checked' : ''}>
                     <label for="jogando" style="display:inline;">Estou jogando atualmente</label>
                 </div>
@@ -78,7 +78,7 @@
                         <td>
                             <c:choose>
                                 <c:when test="${not empty j.capa}">
-                                    <img src="${j.capa}" alt="Capa" style="width:50px; height:65px; object-fit:cover; border-radius:4px;">
+                                    <img src="${j.capa}" alt="Capa" class="game-cover">
                                 </c:when>
                                 <c:otherwise>
                                     <span style="font-size:11px; color:gray;">Sem capa</span>
