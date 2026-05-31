@@ -79,7 +79,7 @@ public class JogoDAO {
         }
     }
 
-    public List<Jogo> listar(Jogo j){
+    public List<Jogo> listar(){
         String sql = "SELECT * FROM jogos";
         List<Jogo> lista = new ArrayList<>();
 
