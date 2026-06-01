@@ -3,6 +3,7 @@ package model;
 public class Jogo {
 
     private int id;
+    private int usuarioId;
     private String nome;
     private String genero;
     private String plataforma;
@@ -13,7 +14,8 @@ public class Jogo {
 
     public Jogo(){}
 
-    public Jogo(String nome, String genero, String plataforma, double horas, int nota, boolean jogando, String capa) {
+    public Jogo(int usuarioId, String nome, String genero, String plataforma, double horas, int nota, boolean jogando, String capa) {
+        this.usuarioId = usuarioId;
         this.nome = nome;
         this.genero = genero;
         this.plataforma = plataforma;
@@ -23,8 +25,9 @@ public class Jogo {
         this.capa = capa;
     }
 
-    public Jogo(int id, String nome, String genero, String plataforma, double horas, int nota, boolean jogando, String capa){
+    public Jogo(int id, int usuarioId, String nome, String genero, String plataforma, double horas, int nota, boolean jogando, String capa){
         this.id = id;
+        this.usuarioId = usuarioId;
         this.nome = nome;
         this.genero = genero;
         this.plataforma = plataforma;
@@ -40,6 +43,14 @@ public class Jogo {
 
     public void setId(int id){
         this.id = id;
+    }
+
+    public int getUsuarioId(){
+        return usuarioId;
+    }
+
+    public void setUsuarioId(int usuarioId){
+        this.usuarioId = usuarioId;
     }
 
     public String getNome(){

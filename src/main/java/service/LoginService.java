@@ -5,9 +5,11 @@ import model.Usuario;
 
 public class LoginService {
 
+    private UsuarioDAO dao = new UsuarioDAO();
+
     public Usuario autenticar(String email, String senha){
         try {
-            return new UsuarioDAO().autenticar(email, senha);
+            return dao.autenticar(email, senha);
         } catch (Exception e) {
             e.printStackTrace();
         }

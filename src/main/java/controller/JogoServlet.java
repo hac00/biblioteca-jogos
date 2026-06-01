@@ -7,7 +7,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.Estatisticas;
 import model.Jogo;
+import model.Usuario;
 import service.JogoService;
 
 import java.io.IOException;
@@ -25,21 +27,26 @@ public class JogoServlet extends HttpServlet {
             resp.sendRedirect("index.jsp");
             return;
         }
+        Usuario logado = (Usuario) session.getAttribute("usuario");
         String acao = req.getParameter("acao");
         if ("editar".equals(acao)) {
             int id = Integer.parseInt(req.getParameter("id"));
-            Jogo j = service.buscarId(id);
+            Jogo j = service.buscarId(id, logado.getId());
             req.setAttribute("jogo", j);
         }
         if ("excluir".equals(acao)) {
             int id = Integer.parseInt(req.getParameter("id"));
-            service.excluir(id);
+            service.excluir(id, logado.getId());
             resp.sendRedirect("jogo?msg=excluido");
             return;
         }
 
-        List<Jogo> lista = service.listar();
+
+        List<Jogo> lista = service.listarUsuario(logado.getId());
         req.setAttribute("jogos", lista);
+
+        Estatisticas stats = service.calcularEstatisticas(lista);
+        req.setAttribute("stats", stats);
 
         RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/pages/jogos.jsp");
 
@@ -70,17 +77,23 @@ public class JogoServlet extends HttpServlet {
                                                                      req.getParameter("jogando").equals("on"));
         String capa = req.getParameter("capa");
 
-        Jogo j = new Jogo(nome, genero, plataforma, horas, nota, jogando, capa);
+        Usuario logado = (Usuario) session.getAttribute("usuario");
+        Jogo j = new Jogo(logado.getId(), nome, genero, plataforma, horas, nota, jogando, capa);
 
-        if(idParam != null && !idParam.isEmpty()){
-            j.setId(Integer.parseInt(idParam));
-            service.atualizar(j);
-            resp.sendRedirect("jogo?msg=editado");
-        }else{
-            service.inserir(j);
-            resp.sendRedirect("jogo?msg=salvo");
+        try {
+            if(idParam != null && !idParam.isEmpty()){
+                j.setId(Integer.parseInt(idParam));
+                service.atualizar(j);
+                resp.sendRedirect("jogo?msg=editado");
+            }else{
+                service.inserir(j);
+                resp.sendRedirect("jogo?msg=salvo");
+            }
+        } catch (IllegalArgumentException e) {
+            req.setAttribute("erroValidacao", e.getMessage());
+            req.setAttribute("jogo", j);
+            doGet(req, resp);
         }
-
     };
 
 }

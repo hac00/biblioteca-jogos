@@ -23,6 +23,17 @@
         </c:when>
     </c:choose>
 
+    <c:if test="${not empty erroValidacao}">
+        <div class="msg" style="background-color: #f8d7da; color: #721c24;">${erroValidacao}</div>
+    </c:if>
+
+    <div class="card" style="width: 90%; margin: 20px auto; display: flex; justify-content: space-around; background: rgba(255,255,255,0.95); padding: 20px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+        <div style="text-align: center;"><h3>📚 Total</h3><p style="font-size: 20px; font-weight: bold; color: #4f46e5;">${stats.totalJogos} jogos</p></div>
+        <div style="text-align: center;"><h3>⏳ Tempo</h3><p style="font-size: 20px; font-weight: bold; color: #4f46e5;">${stats.totalHoras} hrs</p></div>
+        <div style="text-align: center;"><h3>⭐ Média</h3><p style="font-size: 20px; font-weight: bold; color: #4f46e5;">${stats.mediaNotas} / 10</p></div>
+        <div style="text-align: center;"><h3>🎮 Ativos</h3><p style="font-size: 20px; font-weight: bold; color: #155724;">${stats.jogando} jogando</p></div>
+    </div>
+
     <div class="container">
         <div class="card">
             <h2>${jogo.id != null ? 'Editar Jogo' : 'Adicionar Jogo'}</h2>

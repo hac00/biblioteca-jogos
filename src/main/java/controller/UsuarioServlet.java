@@ -29,7 +29,7 @@ public class UsuarioServlet extends HttpServlet {
             resp.sendRedirect("index.jsp");
         }else{
             req.setAttribute("erro", "Erro ao cadastrar usuario");
-            req.getRequestDispatcher("cadastro.jsp").forward(req, resp);
+            req.getRequestDispatcher("WEB-INF/pages/cadastro.jsp").forward(req, resp);
         }
     }
 

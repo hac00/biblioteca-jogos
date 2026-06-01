@@ -8,7 +8,8 @@
   <div class="logo" style="color: white; font-weight: bold; font-size: 20px; font-family: sans-serif;">
     🎮 GameLibrary Manager
   </div>
-
+  <a href="${pageContext.request.contextPath}/jogo">Minha Biblioteca</a>
+  <a href="${pageContext.request.contextPath}/wishlist">Lista de Desejos</a>
   <div style="color: white; font-family: sans-serif;">
     <c:if test="${not empty sessionScope.usuario}">
       Olá, <strong>${sessionScope.usuario.nome}</strong> |
